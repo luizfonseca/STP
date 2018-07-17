@@ -1,5 +1,5 @@
 [package]
-name = "smart-trips"
+name = "stp"
 version = "0.1.0"
 authors = ["Luiz Fonseca <eu@luiz.cc>"]
 
@@ -7,3 +7,5 @@ authors = ["Luiz Fonseca <eu@luiz.cc>"]
 rand = "0.5.4"
 geo = "0.9.1"
 csv = "1"
+log = "0.4.3"
+flexi_logger = "0.9"

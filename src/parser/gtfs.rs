@@ -1,31 +1,66 @@
 extern crate csv;
-
-use std::io;
 use std::fs;
+use types::gtfs::*;
+use std::error::Error;
 
-mod parser::gtfs {
-    let supported_files : <Vec<String>> =
-        vec!["agency", "stops", "calendar_dates",
-            "calendar", "trips", "routes", "shapes",
-            "transfers", "stop_times"];
+/// Returns true if the parse was successful
+pub fn parse(path: &str)  {
+    load_files(path);
+}
+/*
+ * Check if the files from given path are
+ * included on the valid GTFS file list.
+**/
+fn load_files(path: &str) {
+    let list = fs::read_dir(path).unwrap();
 
-    pub fn check_files_from(path: String) -> <Vec<String>> {
-        let list = fs::read_dir(path).unwrap_or([]);
+    for file in list {
+        let file = file.unwrap();
+        let fullpath = &file.path();
+        let file_name = &file.file_name();
+        let file_name = file_name.to_str();
 
-        for item in &list {
-            println(item.path().unwrap().display());
+        if is_supported_file(file_name.unwrap()) {
+            info!("GTFS found: {}", file_name.unwrap());
+            transform_to_native_type(fullpath.to_str())
+        } else {
+            warn!("Invalid GTFS file: {}", file_name.unwrap())
         }
     }
 }
 
+fn transform_to_native_type(path: Option<&str>)  {
+    let reader = csv::Reader::from_path(path.unwrap());
+    for result in reader.iter() {
+        info!("Transform: {:?}", result)
+    }
+}
+
+fn transform_agency(csv: csv::ReaderBuilder) -> Result<(), Box<Error>> {
+    return Ok(());
+}
 
 
+fn is_supported_file(file_name: &str) -> bool {
+    match file_name {
+        "agency.txt" | "calendar.txt" | "calendar_dates.txt" | "routes.txt" |
+        "shapes.txt" | "stops.txt" | "stop_times.txt" | "transfers.txt" |
+        "trips.txt" => return true,
+        _  => return false
+    }
+}
 
 #[cfg(test)]
 mod tests {
+    use parser::gtfs::*;
 
     #[test]
-    fn test_check_files_from() {
-        assert_eq!(check_files_from("./"), "");
+    fn test_load_files() {
+        assert_eq!((), load_files("./"))
+    }
+
+    #[test]
+    fn test_parse() {
+        assert_eq!((), parse("./"))
     }
 }
