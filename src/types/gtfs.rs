@@ -1,41 +1,53 @@
-mod gtfs {
-    pub struct Agency {
-        id: i32,
-        name: String,
-        url: String,
-        timezone: String,
-        language: String,
-        phone: String
-    }
+extern crate serde;
 
-    pub struct Calendar {
+#[derive(Debug,Deserialize)]
+pub struct Agency {
+    #[serde(rename="agency_id")] id: i32,
+    #[serde(rename="agency_name")] name: String,
+    #[serde(rename="agency_url")] url: String,
+    #[serde(rename="agency_timezone")] timezone: String,
+    #[serde(rename="agency_lang")] language: String,
+    #[serde(rename="agency_phone")] phone: String
+}
 
-    }
+#[derive(Debug,Deserialize)]
+pub struct Calendar {
 
-    pub struct CalendarDate {
+}
 
-    }
+#[derive(Debug,Deserialize)]
+pub struct CalendarDate {
 
-    pub struct Transfer {
+}
 
-    }
+#[derive(Debug,Deserialize)]
+pub struct Transfer {
 
-    pub struct Stop {
+}
 
-    }
+#[derive(Debug,Deserialize)]
+pub struct Stop {
+    #[serde(rename="stop_id")] id: String,
+    #[serde(rename="stop_code")] code: String,
+    #[serde(rename="stop_name")] name: String,
+    #[serde(rename="stop_desc")] desc: String,
+    #[serde(rename="stop_lat")] lat: String,
+    #[serde(rename="stop_lon")] lng: String,
+    #[serde(rename="location_type")] location_type: String,
+    #[serde(rename="parent_station")] parent_station: String,
+}
 
-    pub struct Route {
-        id: i32,
-        agency: Agency,
-        short_name: String,
-        long_name: String,
-        color: String,
-        text_color: String,
-    }
+#[derive(Debug,Deserialize)]
+pub struct Route {
+    id: i32,
+    agency: Agency,
+    short_name: String,
+    long_name: String,
+    color: String,
+    text_color: String,
+}
 
-    pub struct Trip {
-        route: Route,
-    }
-
-
+#[derive(Debug,Deserialize)]
+pub struct Trip {
+    route: Route,
 }
