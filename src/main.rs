@@ -1,9 +1,10 @@
+#![feature(rust_2018_preview)]
+
 #[macro_use] extern crate serde_derive;
 #[macro_use] extern crate log;
 
 
 extern crate flexi_logger;
-#![feature(rust_2018_preview)]
 /// Usage:
 /// ./stp {--agency=796} --gtfs_path=/path/gtfs/bvg --osm=berlin.osm --osm-url=apix
 // extern crate geo;

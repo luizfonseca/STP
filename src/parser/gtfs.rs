@@ -2,8 +2,7 @@ use std::fs;
 use types::gtfs::*;
 use std::error::Error;
 use std::fs::DirEntry;
-use types::gtfs::*;
-use std::prelude::v1::None;
+use types::gtfs::{Stop, Agency};
 use std::result::Result;
 extern crate csv;
 
@@ -47,7 +46,7 @@ fn transform_to_native_type(file: DirEntry) -> Result<(), Box<Error>> {
     .flexible(true).has_headers(true).from_path(&file.path())?;
 
     for result in reader.deserialize() {
-        let record : Stop = result?;
+        let _record : Stop = result?;
         // let record = enum_for_supported(&file.file_name().to_str().unwrap(), result);
 
         // info!("{:?}", record);
