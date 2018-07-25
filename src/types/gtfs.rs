@@ -1,7 +1,9 @@
-extern crate serde;
+#![feature(use_extern_macros)]
+
+use serde_derive::*;
 
 #[derive(Debug,Deserialize)]
-pub struct Agency {
+crate struct Agency {
     #[serde(rename="agency_id")] id: i32,
     #[serde(rename="agency_name")] name: String,
     #[serde(rename="agency_url")] url: String,
@@ -11,22 +13,22 @@ pub struct Agency {
 }
 
 #[derive(Debug,Deserialize)]
-pub struct Calendar {
+crate struct Calendar {
 
 }
 
 #[derive(Debug,Deserialize)]
-pub struct CalendarDate {
+crate struct CalendarDate {
 
 }
 
 #[derive(Debug,Deserialize)]
-pub struct Transfer {
+crate struct Transfer {
 
 }
 
 #[derive(Debug,Deserialize)]
-pub struct Stop {
+crate struct Stop {
     #[serde(rename="stop_id")] id: String,
     #[serde(rename="stop_code")] code: String,
     #[serde(rename="stop_name")] name: String,
@@ -38,7 +40,7 @@ pub struct Stop {
 }
 
 #[derive(Debug,Deserialize)]
-pub struct Route {
+crate struct Route {
     id: i32,
     agency: Agency,
     short_name: String,
@@ -48,6 +50,6 @@ pub struct Route {
 }
 
 #[derive(Debug,Deserialize)]
-pub struct Trip {
+crate struct Trip {
     route: Route,
 }

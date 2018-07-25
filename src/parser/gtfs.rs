@@ -1,20 +1,18 @@
+use log::{info, warn, log};
+
 use std::fs;
-use types::gtfs::*;
 use std::error::Error;
 use std::fs::DirEntry;
-use types::gtfs::{Stop, Agency};
 use std::result::Result;
-extern crate csv;
-
+use crate::types::gtfs::{Stop, Agency};
 
 /// Returns true if the parse was successful
-pub fn parse(path: &str)  {
+crate fn parse(path: &str)  {
     load_files(path);
 }
-/*
- * Check if the files from given path are
- * included on the valid GTFS file list.
-**/
+
+/// Check if the files from given path are
+/// included on the valid GTFS file list.
 fn load_files(path: &str) {
     let list = fs::read_dir(path).unwrap();
 

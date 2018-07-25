@@ -1,7 +1,10 @@
+cargo-features = ["edition"]
+
 [package]
 name = "stp"
 version = "0.1.0"
 authors = ["Luiz Fonseca <eu@luiz.cc>"]
+edition = "2018"
 
 [dependencies]
 rand = "0.5.4"

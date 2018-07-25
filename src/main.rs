@@ -1,19 +1,14 @@
 #![feature(rust_2018_preview)]
+#![warn(rust_2018_idioms)]
 
-#[macro_use] extern crate serde_derive;
-#[macro_use] extern crate log;
-
-
-extern crate flexi_logger;
 /// Usage:
 /// ./stp {--agency=796} --gtfs_path=/path/gtfs/bvg --osm=berlin.osm --osm-url=apix
-// extern crate geo;
-//
-// use geo::algorithm::haversine_distance::HaversineDistance;
-// use geo::{Point};
+/// extern crate geo;
+/// use geo::algorithm::haversine_distance::HaversineDistance;
+/// use geo::{Point};
 mod parser;
 mod types;
-use parser::gtfs as gtfs_parser;
+use self::parser::gtfs as gtfs_parser;
 use flexi_logger::Logger;
 
 fn main() {

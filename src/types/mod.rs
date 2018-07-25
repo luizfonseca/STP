@@ -1,1 +1,1 @@
-pub mod gtfs;
+crate mod gtfs;

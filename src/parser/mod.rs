@@ -14,4 +14,4 @@ mod macros {
     }
 }
 
-pub mod gtfs;
+crate mod gtfs;
